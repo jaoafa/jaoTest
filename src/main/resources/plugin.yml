@@ -1,0 +1,4 @@
+name: jaoTest
+version: ${project.version}
+main: com.jaoafa.jaotest.Main
+api-version: 1.17
