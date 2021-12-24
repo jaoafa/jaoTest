@@ -11,8 +11,11 @@ import java.util.Locale;
 import java.util.Objects;
 
 public final class Main extends JavaPlugin {
+    static Main main;
     @Override
     public void onEnable() {
+        main = this;
+
         getServer().getPluginManager().registerEvents(new Event_JoinVerifiedCheck(), this);
         getServer().getPluginManager().registerEvents(new Event_CommandNotify(), this);
 
@@ -29,5 +32,9 @@ public final class Main extends JavaPlugin {
             Component.space(),
             Component.text("指定されたプレイヤー「" + s + "」は見つかりませんでした。", NamedTextColor.GREEN)
         ));
+    }
+
+    public static Main getMain() {
+        return main;
     }
 }
