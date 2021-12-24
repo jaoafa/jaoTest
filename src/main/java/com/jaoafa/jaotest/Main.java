@@ -31,7 +31,7 @@ public final class Main extends JavaPlugin {
         sender.sendMessage(Component.join(JoinConfiguration.noSeparators(),
             Component.text("[" + cmd.getName().toLowerCase(Locale.ROOT) + "]"),
             Component.space(),
-            Component.text("指定されたプレイヤー「" + s + "」は見つかりませんでした。", NamedTextColor.GREEN)
+            Component.text(s, NamedTextColor.GREEN)
         ));
     }
 
