@@ -6,7 +6,6 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
@@ -68,13 +67,17 @@ public class Event_JoinVerifiedCheck implements Listener {
         String permission = data.getString("permission");
 
         Calendar startCal = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Asia/Tokyo")));
-        startCal.set(2021, Calendar.DECEMBER, 4, 10, 0, 0); // 2021/12/04 10:00:00 JST
+        if(permission.equalsIgnoreCase("Regular")) {
+            startCal.set(2021, Calendar.DECEMBER, 24, 23, 0, 0); // Regular - 2021/12/24 23:00:00 JST
+        }else{
+            startCal.set(2021, Calendar.DECEMBER, 29, 0, 0, 0); // Verified - 2021/12/29 00:00:00 JST
+        }
         Date start = startCal.getTime();
 
         Date now = new Date();
 
         Calendar endCal = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Asia/Tokyo")));
-        endCal.set(2021, Calendar.DECEMBER, 24, 23, 59, 59); // 2021/12/24 23:59:59 JST
+        endCal.set(2022, Calendar.JANUARY, 8, 23, 59, 59); // 2021/01/08 23:59:59 JST
         Date end = endCal.getTime();
 
         if (now.before(start) &&
