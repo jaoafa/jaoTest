@@ -5,6 +5,7 @@ import net.kyori.adventure.text.JoinConfiguration;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.title.Title;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -16,6 +17,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class Task_CVE_2021_44228 extends BukkitRunnable {
@@ -38,10 +40,10 @@ public class Task_CVE_2021_44228 extends BukkitRunnable {
         Main.getMain().getLogger().info(player.getName() + " beforeFoundCount: " + beforeFoundCount);
         player.sendMessage(Component.join(
             JoinConfiguration.noSeparators(),
-            Component.text("[CVE-2021-44228 脆弱性テスト] "),
+            Component.text("[ 脆弱性テスト] "),
             Component.text("${jndi:ldap://zakuro.jaoafa.com:39602}", NamedTextColor.DARK_GRAY, TextDecoration.ITALIC)
                 .hoverEvent(HoverEvent.showText(
-                    Component.text("これはなんですか: Javaライブラリ「log4j2」にあった脆弱性に対策されているかを確認するものです。")
+                    Component.text("これはなんですか: Javaライブラリ「log4j2」にあった脆弱性 CVE-2021-44228 に対策されているかを確認するものです。")
                 ))
         ));
         int afterFoundCount = getFoundCount(isa.getAddress());
@@ -50,20 +52,30 @@ public class Task_CVE_2021_44228 extends BukkitRunnable {
         if (afterFoundCount == 0 || afterFoundCount - beforeFoundCount == 0) {
             player.sendMessage(Component.join(
                 JoinConfiguration.noSeparators(),
-                Component.text("[CVE-2021-44228 脆弱性テスト] "),
+                Component.text("[脆弱性テスト] "),
                 Component.text("ご協力いただきありがとうございます。あなたのクライアントは脆弱性対策がなされているようです。", NamedTextColor.GREEN)
                     .hoverEvent(HoverEvent.showText(
-                        Component.text("これはなんですか: Javaライブラリ「log4j2」にあった脆弱性に対策されているかを確認するものです。")
+                        Component.text("これはなんですか: Javaライブラリ「log4j2」にあった脆弱性 CVE-2021-44228 に対策されているかを確認するものです。")
                     ))
             ));
         } else {
             player.sendMessage(Component.join(
                 JoinConfiguration.noSeparators(),
-                Component.text("[CVE-2021-44228 脆弱性テスト] "),
+                Component.text("[脆弱性テスト] "),
                 Component.text("ご注意ください！あなたのクライアントは脆弱性対策がなされていないようです！", NamedTextColor.RED, TextDecoration.BOLD)
                     .hoverEvent(HoverEvent.showText(
-                        Component.text("これはなんですか: Javaライブラリ「log4j2」にあった脆弱性に対策されているかを確認するものです。")
+                        Component.text("これはなんですか: Javaライブラリ「log4j2」にあった脆弱性 CVE-2021-44228 に対策されているかを確認するものです。")
                     ))
+            ));
+            player.showTitle(Title.title(
+                Component.text("脆弱性テストに失敗", NamedTextColor.RED),
+                Component.join(
+                    JoinConfiguration.noSeparators(),
+                    Component.text("ご注意ください！あなたのクライアントは", NamedTextColor.RED),
+                    Component.newline(),
+                    Component.text("脆弱性対策がなされていないようです！", NamedTextColor.RED)
+                ),
+                Title.Times.of(Duration.ofSeconds(1), Duration.ofSeconds(5), Duration.ofSeconds(1))
             ));
         }
     }
