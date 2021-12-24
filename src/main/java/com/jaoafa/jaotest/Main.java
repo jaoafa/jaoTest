@@ -18,6 +18,7 @@ public final class Main extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new Event_JoinVerifiedCheck(), this);
         getServer().getPluginManager().registerEvents(new Event_CommandNotify(), this);
+        getServer().getPluginManager().registerEvents(new Event_CVE_2021_44228(), this);
 
         Objects.requireNonNull(getCommand("brb")).setExecutor(new Cmd_Brb());
         Objects.requireNonNull(getCommand("cmdb")).setExecutor(new Cmd_Cmdb());
