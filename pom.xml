@@ -6,7 +6,7 @@
 
     <groupId>com.jaoafa</groupId>
     <artifactId>jaoTest</artifactId>
-    <version>1.18.1-1</version>
+    <version>1.18.1-2</version>
     <packaging>jar</packaging>
 
     <name>jaoTest</name>
