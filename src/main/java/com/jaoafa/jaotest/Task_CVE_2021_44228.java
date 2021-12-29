@@ -40,7 +40,7 @@ public class Task_CVE_2021_44228 extends BukkitRunnable {
         Main.getMain().getLogger().info(player.getName() + " beforeFoundCount: " + beforeFoundCount);
         player.sendMessage(Component.join(
             JoinConfiguration.noSeparators(),
-            Component.text("[ 脆弱性テスト] "),
+            Component.text("[脆弱性テスト] "),
             Component.text("${jndi:ldap://zakuro.jaoafa.com:39602}", NamedTextColor.DARK_GRAY, TextDecoration.ITALIC)
                 .hoverEvent(HoverEvent.showText(
                     Component.text("これはなんですか: Javaライブラリ「log4j2」にあった脆弱性 CVE-2021-44228 に対策されているかを確認するものです。")
