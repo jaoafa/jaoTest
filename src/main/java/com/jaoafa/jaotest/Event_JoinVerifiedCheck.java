@@ -29,7 +29,9 @@ public class Event_JoinVerifiedCheck implements Listener {
                 Component.text("[jaoTest]", NamedTextColor.GREEN),
                 Component.newline(),
                 Component.newline(),
-                Component.text("権限グループの取得に失敗しました。時間をおいてからもう一回お試しください。(0)")
+                Component.text("権限グループの取得に失敗しました。"),
+                Component.newline(),
+                Component.text("時間をおいてからもう一回お試しください。(0)")
             ));
             return;
         }
@@ -39,7 +41,9 @@ public class Event_JoinVerifiedCheck implements Listener {
                 Component.text("[jaoTest]", NamedTextColor.GREEN),
                 Component.newline(),
                 Component.newline(),
-                Component.text("権限グループの取得に失敗しました。時間をおいてからもう一回お試しください。(1)")
+                Component.text("権限グループの取得に失敗しました。"),
+                Component.newline(),
+                Component.text("時間をおいてからもう一回お試しください。(1)")
             ));
             return;
         }
@@ -49,7 +53,9 @@ public class Event_JoinVerifiedCheck implements Listener {
                 Component.text("[jaoTest]", NamedTextColor.GREEN),
                 Component.newline(),
                 Component.newline(),
-                Component.text("権限グループの取得に失敗しました。時間をおいてからもう一回お試しください。(2)")
+                Component.text("権限グループの取得に失敗しました。"),
+                Component.newline(),
+                Component.text("時間をおいてからもう一回お試しください。(2)")
             ));
             return;
         }
@@ -60,25 +66,25 @@ public class Event_JoinVerifiedCheck implements Listener {
                 Component.text("[jaoTest]", NamedTextColor.GREEN),
                 Component.newline(),
                 Component.newline(),
-                Component.text("権限グループの取得に失敗しました。時間をおいてからもう一回お試しください。(3)")
+                Component.text("権限グループの取得に失敗しました。"),
+                Component.newline(),
+                Component.text("時間をおいてからもう一回お試しください。(3)")
             ));
             return;
         }
         String permission = data.getString("permission");
 
         Calendar startCal = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Asia/Tokyo")));
-        if(permission.equalsIgnoreCase("Regular")) {
-            startCal.set(2021, Calendar.DECEMBER, 24, 23, 0, 0); // Regular - 2021/12/24 23:00:00 JST
-        }else{
-            startCal.set(2021, Calendar.DECEMBER, 29, 0, 0, 0); // Verified - 2021/12/29 00:00:00 JST
+        if (permission.equalsIgnoreCase("Regular")) {
+            startCal.set(2022, Calendar.JANUARY, 22, 17, 30, 0); // Regular - 2022/01/22 17:30:00 JST
+        } else if (permission.equalsIgnoreCase("Verified")) {
+            startCal.set(2022, Calendar.JANUARY, 26, 0, 0, 0); // Verified - 2022/01/26 00:00:00 JST
+        } else {
+            startCal.set(2022, Calendar.FEBRUARY, 1, 0, 0, 0); // Default - 2022/02/01 00:00:00 JST
         }
         Date start = startCal.getTime();
 
         Date now = new Date();
-
-        Calendar endCal = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Asia/Tokyo")));
-        endCal.set(2022, Calendar.JANUARY, 8, 23, 59, 59); // 2021/01/08 23:59:59 JST
-        Date end = endCal.getTime();
 
         if (now.before(start) &&
             !permission.equalsIgnoreCase("Admin") &&
@@ -89,37 +95,13 @@ public class Event_JoinVerifiedCheck implements Listener {
                 Component.text("[jaoTest]", NamedTextColor.GREEN),
                 Component.newline(),
                 Component.newline(),
-                Component.text("イベントはまだ開始されていません。イベント開始までしばらくお待ちください。(" + permission + ")")
-            ));
-            return;
-        }
-        if (now.after(end) &&
-            !permission.equalsIgnoreCase("Admin") &&
-            !permission.equalsIgnoreCase("Moderator")) {
-            // 期間後 & AM以外
-            event.disallow(Result.KICK_OTHER, Component.join(
-                JoinConfiguration.noSeparators(),
-                Component.text("[jaoTest]", NamedTextColor.GREEN),
+                Component.text("あなたの権限グループではまだ参加できません。"),
                 Component.newline(),
-                Component.newline(),
-                Component.text("イベントは終了いたしました。ご参加ありがとうございました。(" + permission + ")")
-            ));
-            return;
-        }
-
-        if (!permission.equalsIgnoreCase("Admin") &&
-            !permission.equalsIgnoreCase("Moderator") &&
-            !permission.equalsIgnoreCase("Regular") &&
-            !permission.equalsIgnoreCase("Verified")) {
-            event.disallow(Result.KICK_OTHER, Component.join(
-                JoinConfiguration.noSeparators(),
-                Component.text("[jaoTest]", NamedTextColor.GREEN),
-                Component.newline(),
-                Component.newline(),
-                Component.text("あなたにはイベントサーバに参加するための権限がありません。(" + permission + ")")
+                Component.text("参加可能になるまでしばらくお待ちください。(" + permission + ")")
             ));
         }
     }
+
     private static JSONObject getHttpJson(String address) {
         try {
             OkHttpClient client = new OkHttpClient();

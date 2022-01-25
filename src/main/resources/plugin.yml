@@ -1,34 +1,4 @@
 name: jaoTest
 version: ${project.version}
 main: com.jaoafa.jaotest.Main
-api-version: 1.17
-commands:
-  brb:
-    description: >
-      バリアブロックをプレイヤーのメインハンドのアイテムと置き換えます。
-    usage: |
-      /brb: バリアブロックをコマンド実行者のメインハンドのアイテムと置き換えます。
-      /brb <Player>: バリアブロックを指定したプレイヤーのメインハンドのアイテムと置き換えます。
-    permission: mymaid.brb
-  cmdb:
-    description: >
-      コマンドブロックをプレイヤーのメインハンドのアイテムと置き換えます。
-    usage: |
-      /cmdb: コマンドブロックをコマンド実行者のメインハンドのアイテムと置き換えます。
-      /cmdb <Player>: コマンドブロックを指定したプレイヤーのメインハンドのアイテムと置き換えます。
-    permission: mymaid.cmdb
-  g:
-    description: ゲームモードを変更します。
-    usage: |
-      /g: クリエイティブモードならスペクテイターモードに、スペクテイターモードならクリエイティブモードに、それ以外ならクリエイティブモードに変更します。
-      /g <0-3>: 指定された数値に合うゲームモードに変更します。
-      /g <0-3> <Player>: 指定したプレイヤーのゲームモードを指定された数値に合うゲームモードに変更します。
-    permission: mymaid.g
-  elytra:
-    description: Elytra
-    usage: /elytra
-    permission: mymaid.elytra
-  debstick:
-    description: debstick
-    usage: /debsticks
-    permission: mymaid.debstick
+api-version: 1.18
