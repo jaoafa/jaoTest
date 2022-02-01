@@ -80,7 +80,7 @@ public class Event_JoinVerifiedCheck implements Listener {
         } else if (permission.equalsIgnoreCase("Verified")) {
             startCal.set(2022, Calendar.JANUARY, 26, 0, 0, 0); // Verified - 2022/01/26 00:00:00 JST
         } else {
-            startCal.set(2022, Calendar.FEBRUARY, 1, 0, 0, 0); // Default - 2022/02/01 00:00:00 JST
+            startCal.set(2022, Calendar.FEBRUARY, 28, 0, 0, 0); // Default - 2022/02/28 00:00:00 JST
         }
         Date start = startCal.getTime();
 
